@@ -1,51 +1,51 @@
-/*
- *   libperfmap: a JVM agent to create perf-<pid>.map files for consumption
- *               with linux perf-tools
- *   Copyright (C) 2013-2015 Johannes Rudolph<johannes.rudolph@gmail.com>
- *
- *   This program is free software; you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation; either version 2 of the License, or
- *   (at your option) any later version.
- *
- *   This program is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License along
- *   with this program; if not, write to the Free Software Foundation, Inc.,
- *   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
- */
-
-#include <stdbool.h>
-#include <stdio.h>
-#include <string.h>
-#include <unistd.h>
-
-#include <jni.h>
-#include <jvmti.h>
-#include <jvmticmlr.h>
-
-#include "perf-map-file.h"
-
-#define STRING_BUFFER_SIZE 2000
-#define BIG_STRING_BUFFER_SIZE 20000
-
-bool unfold_inlined_methods = false;
-bool unfold_simple = false;
-bool unfold_all = false;
-bool print_method_signatures = false;
-bool print_source_loc = false;
-
-bool clean_class_names = false;
-bool dotted_class_names = false;
-bool annotate_java_frames = false;
-char *unfold_delimiter = "->";
-
-bool debug_dump_unfold_entries = false;
-
-FILE *method_file = NULL;
+///*
+// *   libperfmap: a JVM agent to create perf-<pid>.map files for consumption
+// *               with linux perf-tools
+// *   Copyright (C) 2013-2015 Johannes Rudolph<johannes.rudolph@gmail.com>
+// *
+// *   This program is free software; you can redistribute it and/or modify
+// *   it under the terms of the GNU General Public License as published by
+// *   the Free Software Foundation; either version 2 of the License, or
+// *   (at your option) any later version.
+// *
+// *   This program is distributed in the hope that it will be useful,
+// *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+// *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// *   GNU General Public License for more details.
+// *
+// *   You should have received a copy of the GNU General Public License along
+// *   with this program; if not, write to the Free Software Foundation, Inc.,
+// *   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+// */
+//
+//#include <stdbool.h>
+//#include <stdio.h>
+//#include <string.h>
+//#include <unistd.h>
+//
+//#include <jni.h>
+//#include <jvmti.h>
+//#include <jvmticmlr.h>
+//
+//#include "perf-map-file.h"
+//
+//#define STRING_BUFFER_SIZE 2000
+//#define BIG_STRING_BUFFER_SIZE 20000
+//
+//bool unfold_inlined_methods = false;
+//bool unfold_simple = false;
+//bool unfold_all = false;
+//bool print_method_signatures = false;
+//bool print_source_loc = false;
+//
+//bool clean_class_names = false;
+//bool dotted_class_names = false;
+//bool annotate_java_frames = false;
+//char *unfold_delimiter = "->";
+//
+//bool debug_dump_unfold_entries = false;
+//
+//FILE *method_file = NULL;
 
 //
 //void open_map_file() {
