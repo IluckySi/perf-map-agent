@@ -337,9 +337,9 @@ FILE *method_file = NULL;
 //    return (*jvmti)->SetEventCallbacks(jvmti, &callbacks, (jint)sizeof(callbacks));
 //}
 
-JNIEXPORT jint JNICALL
-Agent_OnAttach(JavaVM *vm, char *options, void *reserved) {
-      printf("I_DEBUG......Agent_OnAttach");
+//JNIEXPORT jint JNICALL
+//Agent_OnAttach(JavaVM *vm, char *options, void *reserved) {
+//      printf("I_DEBUG......Agent_OnAttach");
 //    open_map_file();
 //
 //    unfold_simple = strstr(options, "unfoldsimple") != NULL;
@@ -365,7 +365,7 @@ Agent_OnAttach(JavaVM *vm, char *options, void *reserved) {
 //    (*jvmti)->GenerateEvents(jvmti, JVMTI_EVENT_COMPILED_METHOD_LOAD);
 //    set_notification_mode(jvmti, JVMTI_DISABLE);
 //    close_map_file();
-
-    return 0;
-}
+//
+//    return 0;
+//}
 
