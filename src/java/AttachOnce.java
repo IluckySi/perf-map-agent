@@ -36,6 +36,7 @@ public class AttachOnce {
 
     static void loadAgent(String pid, String options) throws Exception {
         VirtualMachine vm = VirtualMachine.attach(pid);
+        System.out.printf("I_DEBUG: Pid = %s, VirtualMachine = %s", pid, vm.toString());
         try {
             final File lib;
             if (System.getProperty("os.name", "").toLowerCase(Locale.US).contains("os x")) {
@@ -48,6 +49,7 @@ public class AttachOnce {
                 System.out.printf("Expected %s at '%s' but it didn't exist.\n", lib.getName(), fullPath);
                 System.exit(1);
             }
+            System.out.printf("I_DEBUG: fullPath = %s", fullPath);
             else vm.loadAgentPath(fullPath, options);
         } catch(com.sun.tools.attach.AgentInitializationException e) {
             // rethrow all but the expected exception
