@@ -45,11 +45,11 @@ public class AttachOnce {
                 lib = new File("libperfmap.so");
             }
             String fullPath = lib.getAbsolutePath();
+            System.out.printf("I_DEBUG: fullPath = %s", fullPath);
             if (!lib.exists()) {
                 System.out.printf("Expected %s at '%s' but it didn't exist.\n", lib.getName(), fullPath);
                 System.exit(1);
             }
-            System.out.printf("I_DEBUG: fullPath = %s", fullPath);
             else vm.loadAgentPath(fullPath, options);
         } catch(com.sun.tools.attach.AgentInitializationException e) {
             // rethrow all but the expected exception
