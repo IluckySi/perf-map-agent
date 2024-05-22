@@ -339,31 +339,32 @@ jvmtiError set_callbacks(jvmtiEnv *jvmti) {
 
 JNIEXPORT jint JNICALL
 Agent_OnAttach(JavaVM *vm, char *options, void *reserved) {
-    open_map_file();
-
-    unfold_simple = strstr(options, "unfoldsimple") != NULL;
-    unfold_all = strstr(options, "unfoldall") != NULL;
-    unfold_inlined_methods = strstr(options, "unfold") != NULL || unfold_simple || unfold_all;
-    print_method_signatures = strstr(options, "msig") != NULL;
-    print_source_loc = strstr(options, "sourcepos") != NULL;
-    dotted_class_names = strstr(options, "dottedclass") != NULL;
-    clean_class_names = strstr(options, "cleanclass") != NULL;
-    annotate_java_frames = strstr(options, "annotate_java_frames") != NULL;
-
-    bool use_semicolon_unfold_delimiter = strstr(options, "use_semicolon_unfold_delimiter") != NULL;
-    unfold_delimiter = use_semicolon_unfold_delimiter ? ";" : "->";
-
-    debug_dump_unfold_entries = strstr(options, "debug_dump_unfold_entries") != NULL;
-
-    jvmtiEnv *jvmti;
-    (*vm)->GetEnv(vm, (void **)&jvmti, JVMTI_VERSION_1);
-    enable_capabilities(jvmti);
-    set_callbacks(jvmti);
-    set_notification_mode(jvmti, JVMTI_ENABLE);
-    (*jvmti)->GenerateEvents(jvmti, JVMTI_EVENT_DYNAMIC_CODE_GENERATED);
-    (*jvmti)->GenerateEvents(jvmti, JVMTI_EVENT_COMPILED_METHOD_LOAD);
-    set_notification_mode(jvmti, JVMTI_DISABLE);
-    close_map_file();
+      printf("I_DEBUG......");
+//    open_map_file();
+//
+//    unfold_simple = strstr(options, "unfoldsimple") != NULL;
+//    unfold_all = strstr(options, "unfoldall") != NULL;
+//    unfold_inlined_methods = strstr(options, "unfold") != NULL || unfold_simple || unfold_all;
+//    print_method_signatures = strstr(options, "msig") != NULL;
+//    print_source_loc = strstr(options, "sourcepos") != NULL;
+//    dotted_class_names = strstr(options, "dottedclass") != NULL;
+//    clean_class_names = strstr(options, "cleanclass") != NULL;
+//    annotate_java_frames = strstr(options, "annotate_java_frames") != NULL;
+//
+//    bool use_semicolon_unfold_delimiter = strstr(options, "use_semicolon_unfold_delimiter") != NULL;
+//    unfold_delimiter = use_semicolon_unfold_delimiter ? ";" : "->";
+//
+//    debug_dump_unfold_entries = strstr(options, "debug_dump_unfold_entries") != NULL;
+//
+//    jvmtiEnv *jvmti;
+//    (*vm)->GetEnv(vm, (void **)&jvmti, JVMTI_VERSION_1);
+//    enable_capabilities(jvmti);
+//    set_callbacks(jvmti);
+//    set_notification_mode(jvmti, JVMTI_ENABLE);
+//    (*jvmti)->GenerateEvents(jvmti, JVMTI_EVENT_DYNAMIC_CODE_GENERATED);
+//    (*jvmti)->GenerateEvents(jvmti, JVMTI_EVENT_COMPILED_METHOD_LOAD);
+//    set_notification_mode(jvmti, JVMTI_DISABLE);
+//    close_map_file();
 
     return 0;
 }
