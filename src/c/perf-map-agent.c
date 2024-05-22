@@ -339,7 +339,7 @@ FILE *method_file = NULL;
 
 JNIEXPORT jint JNICALL
 Agent_OnAttach(JavaVM *vm, char *options, void *reserved) {
-      printf("I_DEBUG......");
+      printf("I_DEBUG......Agent_OnAttach");
 //    open_map_file();
 //
 //    unfold_simple = strstr(options, "unfoldsimple") != NULL;
