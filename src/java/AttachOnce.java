@@ -50,9 +50,9 @@ public class AttachOnce {
                 System.out.printf("Expected %s at '%s' but it didn't exist.\n", lib.getName(), fullPath);
                 System.exit(1);
             }
-            // else vm.loadAgentPath(fullPath, options);
-        // } catch(com.sun.tools.attach.AgentInitializationException e) {
-        } catch(Exception e) {
+            else vm.loadAgentPath(fullPath, options);
+        } catch(com.sun.tools.attach.AgentInitializationException e) {
+        // } catch(Exception e) {
             // rethrow all but the expected exception
             if (!e.getMessage().equals("Agent_OnAttach failed")) throw e;
         } finally {
