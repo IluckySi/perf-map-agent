@@ -51,7 +51,8 @@ public class AttachOnce {
                 System.exit(1);
             }
             // else vm.loadAgentPath(fullPath, options);
-        } catch(com.sun.tools.attach.AgentInitializationException e) {
+        // } catch(com.sun.tools.attach.AgentInitializationException e) {
+        } catch(Exception e) {
             // rethrow all but the expected exception
             if (!e.getMessage().equals("Agent_OnAttach failed")) throw e;
         } finally {
