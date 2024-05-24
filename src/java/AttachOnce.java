@@ -36,7 +36,7 @@ public class AttachOnce {
 
     static void loadAgent(String pid, String options) throws Exception {
         VirtualMachine vm = VirtualMachine.attach(pid);
-        System.out.printf("I_DEBUG: Pid = %s, options = %s, VirtualMachine = %s\n", pid, options, vm.toString());
+        System.out.printf("I_DEBUG: Pid = %s, options = %s, VirtualMachine = %s\n", pid, options, vm.toString()); // I_DEBUG: Pid = 385695, options = , VirtualMachine = sun.tools.attach.AttachProviderImpl@32d992b2: 385695
         try {
             final File lib;
             if (System.getProperty("os.name", "").toLowerCase(Locale.US).contains("os x")) {
@@ -45,7 +45,7 @@ public class AttachOnce {
                 lib = new File("libperfmap.so");
             }
             String fullPath = lib.getAbsolutePath();
-            System.out.printf("I_DEBUG: fullPath = %s\n", fullPath);
+            System.out.printf("I_DEBUG: fullPath = %s\n", fullPath); // I_DEBUG: fullPath = /data/ilucky/jvm/perf-map-agent/out/libperfmap.so
             if (!lib.exists()) {
                 System.out.printf("Expected %s at '%s' but it didn't exist.\n", lib.getName(), fullPath);
                 System.exit(1);
